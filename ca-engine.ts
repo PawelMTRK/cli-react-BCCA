@@ -1,7 +1,10 @@
+// Duplicates first and last cell
 function prepareGeneration(generation: boolean[]): boolean[] {
   return [generation.at(0)!, ...generation, generation.at(-1)!];
 }
 
+// Get every triple from the array, eg.
+// [1 0 1 1] => [1 0 1], [0 1 1]
 function expandGeneration(generation: boolean[]): boolean[][] {
   // shifts generation left eg.
   // [0, 1, 0, 1]
@@ -33,12 +36,16 @@ function advanceGeneration(
 ): boolean[] {
   return generation.map(
     (elem) => {
+      // change triple to number to change the cell in the next generation
+      // to an appropriate one, eg.
+      // [1 0 1] will get 5th cell from the rule array
       const index = tripleToNumber(elem);
       return rules[index];
     },
   );
 }
 
+// Basically decimal to binary
 function parseNumericRule(rule: number): boolean[] {
   return rule
     .toString(2)
@@ -49,6 +56,7 @@ function parseNumericRule(rule: number): boolean[] {
     });
 }
 
+// Advances the given generation
 export function newGeneration(
   generation: boolean[],
   rule: number,

@@ -19,6 +19,10 @@ const GenerationBox = ({ rule, length, cells }: Props) => {
   ));
 };
 
+const Indicator = ( {index}: Props ) => (
+  <Text>{".".padStart(index + 1)}</Text>
+);
+
 const Root = () => {
   const { columns, rows } = Deno.consoleSize();
   const [selectedCell, setSelectedCell] = useState(0);
@@ -55,7 +59,7 @@ const Root = () => {
 
   return (
     <Box heigth="100%" width="100%" flexWrap="wrap">
-      <Text> {debugi} </Text>
+      <Indicator index={selectedCell} />
       <Generation
         cells={initCells}
       />

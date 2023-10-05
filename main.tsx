@@ -14,8 +14,8 @@ const Generation = ({ cells }: Props) => (
 
 const GenerationBox = ({ rule, length, cells }: Props) => {
   const generations: boolean[][] = newNGenerations(length, cells, rule);
-  return generations.map((elem) => (
-    <Generation cells={elem} key={elem.toString()} />
+  return generations.map((elem, index) => (
+    <Generation cells={elem} key={index} />
   ));
 };
 
